@@ -1,7 +1,7 @@
-name: Expo Doctor Check
+name: Expo Doctor Check -
 
 on:
-  workflow_dispatch: # This adds the manual "Run workflow" button
+  workflow_dispatch:
   push:
     branches: [ main, master ]
   pull_request:
@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm' # Automatic caching of node_modules
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
