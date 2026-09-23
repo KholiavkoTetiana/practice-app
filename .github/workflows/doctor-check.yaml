@@ -1,0 +1,27 @@
+name: Expo Doctor Check
+
+on:
+  workflow_dispatch: # This adds the manual "Run workflow" button
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm' # Automatic caching of node_modules
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Expo Doctor
+        run: npx expo-doctor
